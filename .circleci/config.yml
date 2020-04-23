@@ -27,9 +27,9 @@ jobs:
       - *set_aws_credentials
       - checkout
       - run:
-          name: pwd
+          name: cat
           command: |
-            pwd
+            cat ~/.aws/credentials
       - run:
           name: list
           command: |
