@@ -1,34 +1,33 @@
 version: 2.0 # use CircleCI 2.0
-jobs: # a collection of steps  
-  build_all:
+
+base_image: &base_image hashicorp/terraform:light
+
+terraform_init: &terraform_init
+  run:
+    name: terraform init
+    command: |
+      terraform init
+
+jobs:
+  terraform_plan:
     docker:
-      - image: circleci/node:10.16.3
+      - image: *base_image
     steps:
-      - checkout
       - run:
-          name: build-all-step
-          command: echo "I build for all except dev and master"
-  build_master:
-    docker:
-      - image: circleci/node:10.16.3
-    steps:
-      - checkout
+          name: pwd
+          command: |
+            pwd ~
+      - *terraform_init
       - run:
-          name: build-master-step
-          command: echo "I build only for master"
+          name: Terraform Plan
+          command: |
+            terraform plan
 workflows:
   version: 2
   build_all:
     jobs:
-      - build_all:
+      - terraform_plan:
           filters:
             branches:
               ignore:
-                - master
-  build_master:
-    jobs:
-      - build_master:
-          filters:
-            branches:
-              only:
                 - master
