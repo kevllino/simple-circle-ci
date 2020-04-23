@@ -15,10 +15,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: cat
-          command: |
-            cat ~/.aws/credentials
-      - run:
           name: list
           command: |
             ls -l
