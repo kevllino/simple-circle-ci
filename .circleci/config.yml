@@ -16,7 +16,7 @@ jobs:
       - run:
           name: pwd
           command: |
-            pwd ~
+            pwd
       - *terraform_init
       - run:
           name: Terraform Plan
