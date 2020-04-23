@@ -2,17 +2,6 @@ version: 2.0 # use CircleCI 2.0
 
 base_image: &base_image hashicorp/terraform:light
 
-set_aws_credentials: &set_aws_credentials
-  run:
-    name: Set aws credentials
-    command: |
-      mkdir ~/.aws
-      echo "
-        [default]
-        aws_access_key_id=$AWS_ACCESS_KEY_ID
-        aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
-      " > ~/.aws/credentials
-
 terraform_init: &terraform_init
   run:
     name: terraform init
@@ -24,7 +13,6 @@ jobs:
     docker:
       - image: *base_image
     steps:
-      - *set_aws_credentials
       - checkout
       - run:
           name: cat
