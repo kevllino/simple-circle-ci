@@ -1,5 +1,9 @@
-data "null_data_source" "values" {
-  inputs = {
-    all_server_ids = "some_id"
-  }
+provider "aws" {
+  profile = "default"
+  region = "eu-west-2"
+}
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = "firehose-delivery-stream-some"
+  acl = "private"
 }
