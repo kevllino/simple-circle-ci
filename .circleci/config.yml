@@ -17,6 +17,10 @@ jobs:
           name: pwd
           command: |
             pwd
+      - run:
+          name: list
+          command: |
+            ls -l
       - *terraform_init
       - run:
           name: Terraform Plan
