@@ -1,3 +1,3 @@
 # simple-circle-ci
 
-Simple Circle CI project
+Simple Circle CI project.
